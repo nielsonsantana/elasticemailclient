@@ -1,18 +1,16 @@
-# Elasticmail
+# ElasticmailClient
 
 Elasticmal client from [Elasticmail library](http://api.elasticemail.com/public/client/python)
 
 ## Getting Started
 
-1. Install elasticmail at the command prompt if you haven't yet:
+1. Install elasticmailclient at the command prompt if you haven't yet:
 
-        $ pip install elasticmail
+    $ pip install git+http://github.com/nielsonsantana/elasticmailclient.git@v2.33.0#egg=elasticmailclient
 
-<!-- 2. At the command prompt, create a new Rails application:
+2. Now, is possible import elasticmailclient in your project:
 
-        $ rails new myapp
-
-   where "myapp" is the application name. -->
+    $ from ElasticEmailClient import ApiClient, Account, Email
 
 
 ## License
