@@ -2,6 +2,8 @@ import requests
 import json
 from enum import Enum
 
+from api_types import ApiTypes
+
 
 class ApiClient:
     apiUri = 'https://api.elasticemail.com/v2'
