@@ -4,15 +4,15 @@ from distutils.core import setup
 
 
 setup(
-    name='elasticmailclient',
+    name='elasticemailclient',
     version='0.1',
-    description='ElasticMailClient Python API - https://elasticemail.com/resources/api/integration-libraries/.',
+    description='ElasticEmailClient Python API - https://elasticemail.com/resources/api/integration-libraries/.',
     author='Elastic Email, Inc.',
     author_email='<author email>',
-    url='https://github.com/nielsonsantana/elasticmailclient',
+    url='https://github.com/nielsonsantana/elasticemailclient',
     install_requires=['requests'],
     packages=[
-        'elasticmailclient',
+        'elasticemailclient',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
