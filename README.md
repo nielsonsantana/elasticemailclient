@@ -14,7 +14,7 @@ Elasticmal client from [Elasticmail library](http://api.elasticemail.com/public/
 
 2. Now, is possible import elasticmailclient in your project:
 
-        from ElasticEmailClient import ApiClient, Account, Email
+        from elasticemailclient import ApiClient, Account, Email
 
 
 ## License
