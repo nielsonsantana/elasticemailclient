@@ -9,6 +9,7 @@ class ApiClient:
     apiUri = 'https://api.elasticemail.com/v2'
     apiKey = '00000000-0000-0000-0000-0000000000000'
 
+    @staticmethod
     def Request(method, url, data=dict(), attachs=None):
         data['apikey'] = ApiClient.apiKey
         if method == 'POST':
@@ -32,13 +33,12 @@ class ApiClient:
             return 'success'
 
 
-""" 
-Methods for managing your account and subaccounts.
-"""
-
-
 class Account:
+    """ 
+    Methods for managing your account and subaccounts.
+    """
 
+    @staticmethod
     def AddSubAccount(email, password, confirmPassword, requiresEmailCredits=False, enableLitmusTest=False, requiresLitmusCredits=False, maxContacts=0, enablePrivateIPRequest=True, sendActivation=False, returnUrl=None, sendingPermission=None, enableContactFeatures=None, poolName=None, emailSizeLimit=10, dailySendLimit=None):
         """
         Create new subaccount and provide most important data about it.
@@ -77,6 +77,7 @@ class Account:
             'emailSizeLimit': emailSizeLimit,
             'dailySendLimit': dailySendLimit})
 
+    @staticmethod
     def AddSubAccountCredits(credits, notes, creditType=ApiTypes.CreditType.Email, subAccountEmail=None, publicAccountID=None):
         """
         Add email, template or litmus credits to a sub-account
@@ -94,6 +95,7 @@ class Account:
             'subAccountEmail': subAccountEmail,
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def ChangeEmail(newEmail, confirmEmail, sourceUrl="https://elasticemail.com/account/"):
         """
         Change your email address. Remember, that your email address is used as login!
@@ -108,6 +110,7 @@ class Account:
             'confirmEmail': confirmEmail,
             'sourceUrl': sourceUrl})
 
+    @staticmethod
     def ChangePassword(currentPassword, newPassword, confirmPassword):
         """
         Create new password for your account. Password needs to be at least 6 characters long.
@@ -121,6 +124,7 @@ class Account:
             'newPassword': newPassword,
             'confirmPassword': confirmPassword})
 
+    @staticmethod
     def DeleteSubAccount(notify=True, subAccountEmail=None, publicAccountID=None, deleteDomains=True):
         """
         Deletes specified Subaccount
@@ -136,6 +140,7 @@ class Account:
             'publicAccountID': publicAccountID,
             'deleteDomains': deleteDomains})
 
+    @staticmethod
     def GetSubAccountApiKey(subAccountEmail=None, publicAccountID=None):
         """
         Returns API Key for the given Sub Account.
@@ -148,6 +153,7 @@ class Account:
             'subAccountEmail': subAccountEmail,
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def GetSubAccountList():
         """
         Lists all of your subaccounts
@@ -156,6 +162,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/getsubaccountlist')
 
+    @staticmethod
     def Load():
         """
         Loads your account. Returns detailed information about your account.
@@ -164,6 +171,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/load')
 
+    @staticmethod
     def LoadAdvancedOptions():
         """
         Load advanced options of your account
@@ -172,6 +180,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadadvancedoptions')
 
+    @staticmethod
     def LoadEmailCreditsHistory():
         """
         Lists email credits history
@@ -180,6 +189,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loademailcreditshistory')
 
+    @staticmethod
     def LoadLitmusCreditsHistory():
         """
         Lists litmus credits history
@@ -188,6 +198,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadlitmuscreditshistory')
 
+    @staticmethod
     def LoadNotificationQueue():
         """
         Shows queue of newest notifications - very useful when you want to check what happened with mails that were not received.
@@ -196,6 +207,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadnotificationqueue')
 
+    @staticmethod
     def LoadPaymentHistory(limit, offset, fromDate, toDate):
         """
         Lists all payments
@@ -212,6 +224,7 @@ class Account:
             'fromDate': fromDate,
             'toDate': toDate})
 
+    @staticmethod
     def LoadPayoutHistory():
         """
         Lists all referral payout history
@@ -220,6 +233,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadpayouthistory')
 
+    @staticmethod
     def LoadReferralDetails():
         """
         Shows information about your referral details
@@ -228,6 +242,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadreferraldetails')
 
+    @staticmethod
     def LoadReputationHistory(limit=20, offset=0):
         """
         Shows latest changes in your sending reputation
@@ -240,6 +255,7 @@ class Account:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def LoadReputationImpact():
         """
         Shows detailed information about your actual reputation score
@@ -248,6 +264,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/loadreputationimpact')
 
+    @staticmethod
     def LoadSpamCheck(limit=20, offset=0):
         """
         Returns detailed spam check.
@@ -260,6 +277,7 @@ class Account:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def LoadSubAccountsEmailCreditsHistory(subAccountEmail=None, publicAccountID=None):
         """
         Lists email credits history for sub-account
@@ -272,6 +290,7 @@ class Account:
             'subAccountEmail': subAccountEmail,
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def LoadSubAccountSettings(subAccountEmail=None, publicAccountID=None):
         """
         Loads settings of subaccount
@@ -284,6 +303,7 @@ class Account:
             'subAccountEmail': subAccountEmail,
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def LoadSubAccountsLitmusCreditsHistory(subAccountEmail=None, publicAccountID=None):
         """
         Lists litmus credits history for sub-account
@@ -296,6 +316,7 @@ class Account:
             'subAccountEmail': subAccountEmail,
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def LoadUsage(EEfrom, to):
         """
         Shows usage of your account in given time.
@@ -308,6 +329,7 @@ class Account:
             'from': EEfrom,
             'to': to})
 
+    @staticmethod
     def ManageApiKeys(apiKey, action):
         """
         Manages your apikeys.
@@ -320,6 +342,7 @@ class Account:
             'apiKey': apiKey,
             'action': action.value})
 
+    @staticmethod
     def Overview():
         """
         Shows summary for your account.
@@ -328,6 +351,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/overview')
 
+    @staticmethod
     def ProfileOverview():
         """
         Shows you account's profile basic overview
@@ -336,6 +360,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/profileoverview')
 
+    @staticmethod
     def RemoveSubAccountCredits(creditType, notes, subAccountEmail=None, publicAccountID=None, credits=None, removeAll=False):
         """
         Remove email, template or litmus credits from a sub-account
@@ -355,6 +380,7 @@ class Account:
             'credits': credits,
             'removeAll': removeAll})
 
+    @staticmethod
     def RequestPremiumSupport():
         """
         Request premium support for your account
@@ -362,6 +388,7 @@ class Account:
         """
         return ApiClient.Request('GET', '/account/requestpremiumsupport')
 
+    @staticmethod
     def RequestPrivateIP(count, notes):
         """
         Request a private IP for your Account
@@ -373,6 +400,7 @@ class Account:
             'count': count,
             'notes': notes})
 
+    @staticmethod
     def UpdateAdvancedOptions(enableClickTracking=None, enableLinkClickTracking=None, manageSubscriptions=None, manageSubscribedOnly=None, transactionalOnUnsubscribe=None, skipListUnsubscribe=None, autoTextFromHtml=None, allowCustomHeaders=None, bccEmail=None, contentTransferEncoding=None, emailNotificationForError=None, emailNotificationEmail=None, webNotificationUrl=None, webNotificationNotifyOncePerEmail=None, webNotificationForSent=None, webNotificationForOpened=None, webNotificationForClicked=None, webNotificationForUnsubscribed=None, webNotificationForAbuseReport=None, webNotificationForError=None, hubCallBackUrl="", inboundDomain=None, inboundContactsOnly=None, lowCreditNotification=None, enableUITooltips=None, enableContactFeatures=None, notificationsEmails=None, unsubscribeNotificationsEmails=None, logoUrl=None, enableTemplateScripting=True, staleContactScore=None, staleContactInactiveDays=None, deliveryReason=None, tutorialsEnabled=None):
         """
         Update sending and tracking options of your account.
@@ -449,6 +477,7 @@ class Account:
             'deliveryReason': deliveryReason,
             'tutorialsEnabled': tutorialsEnabled})
 
+    @staticmethod
     def UpdateCustomBranding(enablePrivateBranding=False, logoUrl=None, supportLink=None, privateBrandingUrl=None, smtpAddress=None, smtpAlternative=None, paymentUrl=None):
         """
         Update settings of your private branding. These settings are needed, if you want to use Elastic Email under your brand.
@@ -470,6 +499,7 @@ class Account:
             'smtpAlternative': smtpAlternative,
             'paymentUrl': paymentUrl})
 
+    @staticmethod
     def UpdateHttpNotification(url, notifyOncePerEmail=False, settings=None):
         """
         Update http notification URL.
@@ -483,6 +513,7 @@ class Account:
             'notifyOncePerEmail': notifyOncePerEmail,
             'settings': settings})
 
+    @staticmethod
     def UpdateProfile(firstName, lastName, address1, city, state, zip, countryID, marketingConsent=None, address2=None, company=None, website=None, logoUrl=None, taxCode=None, phone=None):
         """
         Update your profile.
@@ -518,6 +549,7 @@ class Account:
             'taxCode': taxCode,
             'phone': phone})
 
+    @staticmethod
     def UpdateSubAccountSettings(requiresEmailCredits=False, monthlyRefillCredits=0, requiresLitmusCredits=False, enableLitmusTest=False, dailySendLimit=None, emailSizeLimit=10, enablePrivateIPRequest=False, maxContacts=0, subAccountEmail=None, publicAccountID=None, sendingPermission=None, enableContactFeatures=None, poolName=None):
         """
         Updates settings of specified subaccount
@@ -559,6 +591,7 @@ Sending and monitoring progress of your Campaigns
 
 class Campaign:
 
+    @staticmethod
     def Add(campaign):
         """
         Adds a campaign to the queue for processing based on the configuration
@@ -569,6 +602,7 @@ class Campaign:
         return ApiClient.Request('GET', '/campaign/add', {
             'campaign': campaign})
 
+    @staticmethod
     def Copy(channelID):
         """
         Copy selected campaign
@@ -579,6 +613,7 @@ class Campaign:
         return ApiClient.Request('GET', '/campaign/copy', {
             'channelID': channelID})
 
+    @staticmethod
     def Delete(channelID):
         """
         Delete selected campaign
@@ -588,6 +623,7 @@ class Campaign:
         return ApiClient.Request('GET', '/campaign/delete', {
             'channelID': channelID})
 
+    @staticmethod
     def Export(channelIDs={}, fileFormat=ApiTypes.ExportFileFormats.Csv, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export selected campaigns to chosen file format.
@@ -604,6 +640,7 @@ class Campaign:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def List(search=None, offset=0, limit=0):
         """
         List all of your campaigns
@@ -618,6 +655,7 @@ class Campaign:
             'offset': offset,
             'limit': limit})
 
+    @staticmethod
     def Update(campaign):
         """
         Updates a previously added campaign.  Only Active and Paused campaigns can be updated.
@@ -636,6 +674,7 @@ SMTP and HTTP API channels for grouping email delivery.
 
 class Channel:
 
+    @staticmethod
     def Add(name):
         """
         Manually add a channel to your account to group email
@@ -646,6 +685,7 @@ class Channel:
         return ApiClient.Request('GET', '/channel/add', {
             'name': name})
 
+    @staticmethod
     def Delete(name):
         """
         Delete the channel.
@@ -655,6 +695,7 @@ class Channel:
         return ApiClient.Request('GET', '/channel/delete', {
             'name': name})
 
+    @staticmethod
     def ExportCsv(channelNames, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export channels in CSV file format.
@@ -669,6 +710,7 @@ class Channel:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def ExportJson(channelNames, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export channels in JSON file format.
@@ -683,6 +725,7 @@ class Channel:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def ExportXml(channelNames, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export channels in XML file format.
@@ -697,6 +740,7 @@ class Channel:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def List():
         """
         List all of your channels
@@ -705,6 +749,7 @@ class Channel:
         """
         return ApiClient.Request('GET', '/channel/list')
 
+    @staticmethod
     def Update(name, newName):
         """
         Rename an existing channel.
@@ -725,6 +770,7 @@ Methods used to manage your Contacts.
 
 class Contact:
 
+    @staticmethod
     def Add(publicAccountID, email, publicListID={}, listName=[], firstName=None, lastName=None, source=ApiTypes.ContactSource.ContactApi, returnUrl=None, sourceUrl=None, activationReturnUrl=None, activationTemplate=None, sendActivation=True, consentDate=None, consentIP=None, field={}, notifyEmail=None):
         """
         Add a new contact and optionally to one of your lists.  Note that your API KEY is not required for this call.
@@ -764,6 +810,7 @@ class Contact:
             'field': field,
             'notifyEmail': notifyEmail})
 
+    @staticmethod
     def AddBlocked(email, status):
         """
         Manually add or update a contacts status to Abuse or Unsubscribed status (blocked).
@@ -775,6 +822,7 @@ class Contact:
             'email': email,
             'status': status.value})
 
+    @staticmethod
     def ChangeProperty(email, name, value):
         """
         Change any property on the contact record.
@@ -788,6 +836,7 @@ class Contact:
             'name': name,
             'value': value})
 
+    @staticmethod
     def ChangeStatus(status, rule=None, emails={}):
         """
         Changes status of selected Contacts. You may provide RULE for selection or specify list of Contact IDs.
@@ -801,6 +850,7 @@ class Contact:
             'rule': rule,
             'emails': ";".join(map(str, emails))})
 
+    @staticmethod
     def CountByStatus(rule=None, allContacts=False):
         """
         Returns number of Contacts, RULE specifies contact Status.
@@ -813,6 +863,7 @@ class Contact:
             'rule': rule,
             'allContacts': allContacts})
 
+    @staticmethod
     def CountByUnsubscribeReason(EEfrom=None, to=None):
         """
         Returns count of unsubscribe reasons for unsubscribed and complaint contacts.
@@ -825,6 +876,7 @@ class Contact:
             'from': EEfrom,
             'to': to})
 
+    @staticmethod
     def Delete(rule=None, emails={}):
         """
         Permanantly deletes the contacts provided.  You can provide either a qualified rule or a list of emails (comma separated string).
@@ -836,6 +888,7 @@ class Contact:
             'rule': rule,
             'emails': ";".join(map(str, emails))})
 
+    @staticmethod
     def Export(fileFormat=ApiTypes.ExportFileFormats.Csv, rule=None, emails={}, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export selected Contacts to file.
@@ -854,6 +907,7 @@ class Contact:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def ExportUnsubscribeReasonCount(EEfrom=None, to=None, fileFormat=ApiTypes.ExportFileFormats.Csv, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export contacts' unsubscribe reasons count to file.
@@ -872,6 +926,7 @@ class Contact:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def FindContact(email):
         """
         Finds all Lists and Segments this email belongs to.
@@ -882,6 +937,7 @@ class Contact:
         return ApiClient.Request('GET', '/contact/findcontact', {
             'email': email})
 
+    @staticmethod
     def GetContactsByList(listName, limit=20, offset=0):
         """
         List of Contacts for provided List
@@ -896,6 +952,7 @@ class Contact:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def GetContactsBySegment(segmentName, limit=20, offset=0):
         """
         List of Contacts for provided Segment
@@ -910,6 +967,7 @@ class Contact:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def List(rule=None, limit=20, offset=0):
         """
         List of all contacts. If you have not specified RULE, all Contacts will be listed.
@@ -924,6 +982,7 @@ class Contact:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def LoadBlocked(statuses, search=None, limit=0, offset=0):
         """
         Load blocked contacts
@@ -940,6 +999,7 @@ class Contact:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def LoadContact(email):
         """
         Load detailed contact information
@@ -950,6 +1010,7 @@ class Contact:
         return ApiClient.Request('GET', '/contact/loadcontact', {
             'email': email})
 
+    @staticmethod
     def LoadHistory(email, limit=0, offset=0):
         """
         Shows detailed history of chosen Contact.
@@ -964,6 +1025,7 @@ class Contact:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def QuickAdd(emails, firstName=None, lastName=None, publicListID=None, listName=None, status=ApiTypes.ContactStatus.Active, notes=None, consentDate=None, consentIP=None, field={}, notifyEmail=None):
         """
         Add new Contact to one of your Lists.
@@ -993,6 +1055,7 @@ class Contact:
             'field': field,
             'notifyEmail': notifyEmail})
 
+    @staticmethod
     def Subscribe(publicAccountID):
         """
         Basic double opt-in email subscribe form for your account.  This can be used for contacts that need to re-subscribe as well.
@@ -1002,6 +1065,7 @@ class Contact:
         return ApiClient.Request('GET', '/contact/subscribe', {
             'publicAccountID': publicAccountID})
 
+    @staticmethod
     def Update(email, firstName=None, lastName=None, clearRestOfFields=True, field={}, customFields=None):
         """
         Update selected contact. Omitted contact's fields will be reset by default (see the clearRestOfFields parameter)
@@ -1022,6 +1086,7 @@ class Contact:
             'field': field,
             'customFields': customFields})
 
+    @staticmethod
     def Upload(contactFile, allowUnsubscribe=False, listID=None, listName=None, status=ApiTypes.ContactStatus.Active, consentDate=None, consentIP=None):
         """
         Upload contacts in CSV file.
@@ -1054,6 +1119,7 @@ Managing sender domains. Creating new entries and validating domain records.
 
 class Domain:
 
+    @staticmethod
     def Add(domain, trackingType=ApiTypes.TrackingType.Http):
         """
         Add new domain to account
@@ -1065,6 +1131,7 @@ class Domain:
             'domain': domain,
             'trackingType': trackingType.value})
 
+    @staticmethod
     def Delete(domain):
         """
         Deletes configured domain from account
@@ -1074,6 +1141,7 @@ class Domain:
         return ApiClient.Request('GET', '/domain/delete', {
             'domain': domain})
 
+    @staticmethod
     def List():
         """
         Lists all domains configured for this account.
@@ -1082,6 +1150,7 @@ class Domain:
         """
         return ApiClient.Request('GET', '/domain/list')
 
+    @staticmethod
     def SetDefault(domain):
         """
         Verification of email addres set for domain.
@@ -1091,6 +1160,7 @@ class Domain:
         return ApiClient.Request('GET', '/domain/setdefault', {
             'domain': domain})
 
+    @staticmethod
     def VerifyDkim(domain):
         """
         Verification of DKIM record for domain
@@ -1101,6 +1171,7 @@ class Domain:
         return ApiClient.Request('GET', '/domain/verifydkim', {
             'domain': domain})
 
+    @staticmethod
     def VerifyMX(domain):
         """
         Verification of MX record for domain
@@ -1111,6 +1182,7 @@ class Domain:
         return ApiClient.Request('GET', '/domain/verifymx', {
             'domain': domain})
 
+    @staticmethod
     def VerifySpf(domain):
         """
         Verification of SPF record for domain
@@ -1121,6 +1193,7 @@ class Domain:
         return ApiClient.Request('GET', '/domain/verifyspf', {
             'domain': domain})
 
+    @staticmethod
     def VerifyTracking(domain, trackingType=ApiTypes.TrackingType.Http):
         """
         Verification of tracking CNAME record for domain
@@ -1134,14 +1207,12 @@ class Domain:
             'trackingType': trackingType.value})
 
 
-""" 
-
-"""
-
-
 class Email:
 
-    def GetStatus(transactionID, showFailed=False, showSent=False, showDelivered=False, showPending=False, showOpened=False, showClicked=False, showAbuse=False, showUnsubscribed=False, showErrors=False, showMessageIDs=False):
+    @staticmethod
+    def GetStatus(transactionID, showFailed=False, showSent=False, showDelivered=False,
+                  showPending=False, showOpened=False, showClicked=False, showAbuse=False,
+                  showUnsubscribed=False, showErrors=False, showMessageIDs=False):
         """
         Get email batch status
             string apikey - ApiKey that gives you access to our SMTP and HTTP API's.
@@ -1171,7 +1242,14 @@ class Email:
             'showErrors': showErrors,
             'showMessageIDs': showMessageIDs})
 
-    def Send(subject=None, EEfrom=None, fromName=None, sender=None, senderName=None, msgFrom=None, msgFromName=None, replyTo=None, replyToName=None, to={}, msgTo={}, msgCC={}, msgBcc={}, lists={}, segments={}, mergeSourceFilename=None, dataSource=None, channel=None, bodyHtml=None, bodyText=None, charset=None, charsetBodyHtml=None, charsetBodyText=None, encodingType=ApiTypes.EncodingType.EENone, template=None, attachmentFiles={}, headers={}, postBack=None, merge={}, timeOffSetMinutes=None, poolName=None, isTransactional=False, attachments={}):
+    @staticmethod
+    def Send(subject=None, EEfrom=None, fromName=None, sender=None, senderName=None,
+             msgFrom=None, msgFromName=None, replyTo=None, replyToName=None, to={},
+             msgTo={}, msgCC={}, msgBcc={}, lists={}, segments={}, mergeSourceFilename=None,
+             dataSource=None, channel=None, bodyHtml=None, bodyText=None, charset=None,
+             charsetBodyHtml=None, charsetBodyText=None, encodingType=ApiTypes.EncodingType.EENone,
+             template=None, attachmentFiles={}, headers={}, postBack=None, merge={},
+             timeOffSetMinutes=None, poolName=None, isTransactional=False, attachments={}):
         """
         Submit emails. The HTTP POST request is suggested. The default, maximum (accepted by us) size of an email is 10 MB in total, with or without attachments included. For suggested implementations please refer to https://elasticemail.com/support/http-api/
             string apikey - ApiKey that gives you access to our SMTP and HTTP API's.
@@ -1247,6 +1325,7 @@ class Email:
             'isTransactional': isTransactional,
             'attachments': ";".join(map(str, attachments))}, attachments)
 
+    @staticmethod
     def Status(messageID):
         """
         Detailed status of a unique email sent through your account. Returns a 'Email has expired and the status is unknown.' error, if the email has not been fully processed yet.
@@ -1257,6 +1336,7 @@ class Email:
         return ApiClient.Request('GET', '/email/status', {
             'messageID': messageID})
 
+    @staticmethod
     def View(messageID):
         """
         View email
@@ -1267,13 +1347,9 @@ class Email:
             'messageID': messageID})
 
 
-""" 
-
-"""
-
-
 class Export:
 
+    @staticmethod
     def CheckStatus(publicExportID):
         """
         Check the current status of the export.
@@ -1284,6 +1360,7 @@ class Export:
         return ApiClient.Request('GET', '/export/checkstatus', {
             'publicExportID': publicExportID})
 
+    @staticmethod
     def CountByType():
         """
         Summary of export type counts.
@@ -1292,6 +1369,7 @@ class Export:
         """
         return ApiClient.Request('GET', '/export/countbytype')
 
+    @staticmethod
     def Delete(publicExportID):
         """
         Delete the specified export.
@@ -1301,6 +1379,7 @@ class Export:
         return ApiClient.Request('GET', '/export/delete', {
             'publicExportID': publicExportID})
 
+    @staticmethod
     def List(limit=0, offset=0):
         """
         Returns a list of all exported data.
@@ -1321,6 +1400,7 @@ Manage the files on your account
 
 class File:
 
+    @staticmethod
     def Delete(fileID=None, filename=None):
         """
         Permanently deletes the file from your account
@@ -1332,6 +1412,7 @@ class File:
             'fileID': fileID,
             'filename': filename})
 
+    @staticmethod
     def Download(filename=None, fileID=None):
         """
         Gets content of the chosen File
@@ -1344,6 +1425,7 @@ class File:
             'filename': filename,
             'fileID': fileID})
 
+    @staticmethod
     def List(msgID):
         """
         Lists your available Attachments in the given email
@@ -1354,6 +1436,7 @@ class File:
         return ApiClient.Request('GET', '/file/list', {
             'msgID': msgID})
 
+    @staticmethod
     def ListAll():
         """
         Lists all your available files
@@ -1362,6 +1445,7 @@ class File:
         """
         return ApiClient.Request('GET', '/file/listall')
 
+    @staticmethod
     def Load(filename):
         """
         Gets chosen File
@@ -1372,6 +1456,7 @@ class File:
         return ApiClient.Request('GET', '/file/load', {
             'filename': filename})
 
+    @staticmethod
     def Upload(file, name=None, expiresAfterDays=30):
         """
         Uploads selected file to the server using http form upload format (MIME multipart/form-data) or PUT method.
@@ -1396,6 +1481,7 @@ API methods for managing your Lists
 
 class List:
 
+    @staticmethod
     def Add(listName, createEmptyList=False, allowUnsubscribe=False, rule=None, emails={}, allContacts=False):
         """
         Create new list, based on filtering rule or list of IDs
@@ -1416,6 +1502,7 @@ class List:
             'emails': ";".join(map(str, emails)),
             'allContacts': allContacts})
 
+    @staticmethod
     def AddContacts(listName, rule=None, emails={}, allContacts=False):
         """
         Add existing Contacts to chosen list
@@ -1431,6 +1518,7 @@ class List:
             'emails': ";".join(map(str, emails)),
             'allContacts': allContacts})
 
+    @staticmethod
     def Copy(sourceListName, newlistName=None, createEmptyList=None, allowUnsubscribe=None, rule=None):
         """
         Copy your existing List with the option to provide new settings to it. Some fields, when left empty, default to the source list's settings
@@ -1449,6 +1537,7 @@ class List:
             'allowUnsubscribe': allowUnsubscribe,
             'rule': rule})
 
+    @staticmethod
     def CreateFromCampaign(campaignID, listName, statuses={}):
         """
         Create a new list from the recipients of the given campaign, using the given statuses of Messages
@@ -1463,6 +1552,7 @@ class List:
             'listName': listName,
             'statuses': ";".join(map(str, statuses))})
 
+    @staticmethod
     def CreateNthSelectionLists(listName, numberOfLists, excludeBlocked=True, allowUnsubscribe=False, rule=None, allContacts=False):
         """
         Create a series of nth selection lists from an existing list or segment
@@ -1482,6 +1572,7 @@ class List:
             'rule': rule,
             'allContacts': allContacts})
 
+    @staticmethod
     def CreateRandomList(listName, count, excludeBlocked=True, allowUnsubscribe=False, rule=None, allContacts=False):
         """
         Create a new list with randomized contacts from an existing list or segment
@@ -1502,6 +1593,7 @@ class List:
             'rule': rule,
             'allContacts': allContacts})
 
+    @staticmethod
     def Delete(listName):
         """
         Deletes List and removes all the Contacts from it (does not delete Contacts).
@@ -1511,6 +1603,7 @@ class List:
         return ApiClient.Request('GET', '/list/delete', {
             'listName': listName})
 
+    @staticmethod
     def Export(listName, fileFormat=ApiTypes.ExportFileFormats.Csv, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Exports all the contacts from the provided list
@@ -1527,6 +1620,7 @@ class List:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def list(EEfrom=None, to=None):
         """
         Shows all your existing lists
@@ -1539,6 +1633,7 @@ class List:
             'from': EEfrom,
             'to': to})
 
+    @staticmethod
     def Load(listName):
         """
         Returns detailed information about specific list.
@@ -1549,6 +1644,7 @@ class List:
         return ApiClient.Request('GET', '/list/load', {
             'listName': listName})
 
+    @staticmethod
     def MoveContacts(oldListName, newListName, emails={}, moveAll=None, statuses={}, rule=None):
         """
         Move selected contacts from one List to another
@@ -1568,6 +1664,7 @@ class List:
             'statuses': ";".join(map(str, statuses)),
             'rule': rule})
 
+    @staticmethod
     def RemoveContacts(listName, rule=None, emails={}):
         """
         Remove selected Contacts from your list
@@ -1581,6 +1678,7 @@ class List:
             'rule': rule,
             'emails': ";".join(map(str, emails))})
 
+    @staticmethod
     def Update(listName, newListName=None, allowUnsubscribe=False):
         """
         Update existing list
@@ -1602,6 +1700,7 @@ Methods to check logs of your campaigns
 
 class Log:
 
+    @staticmethod
     def CancelInProgress(channelName=None, transactionID=None):
         """
         Cancels emails that are waiting to be sent.
@@ -1613,6 +1712,7 @@ class Log:
             'channelName': channelName,
             'transactionID': transactionID})
 
+    @staticmethod
     def Export(statuses, fileFormat=ApiTypes.ExportFileFormats.Csv, EEfrom=None, to=None, channelName=None, limit=0, offset=0, includeEmail=True, includeSms=True, messageCategory={}, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None, email=None):
         """
         Export email log information to the specified file format.
@@ -1647,6 +1747,7 @@ class Log:
             'fileName': fileName,
             'email': email})
 
+    @staticmethod
     def ExportLinkTracking(EEfrom, to, channelName=None, fileFormat=ApiTypes.ExportFileFormats.Csv, limit=0, offset=0, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Export detailed link tracking information to the specified file format.
@@ -1671,6 +1772,7 @@ class Log:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def LinkTracking(EEfrom=None, to=None, limit=0, offset=0, channelName=None):
         """
         Track link clicks
@@ -1689,6 +1791,7 @@ class Log:
             'offset': offset,
             'channelName': channelName})
 
+    @staticmethod
     def Load(statuses, EEfrom=None, to=None, channelName=None, limit=0, offset=0, includeEmail=True, includeSms=True, messageCategory={}, email=None, useStatusChangeDate=False):
         """
         Returns logs filtered by specified parameters.
@@ -1719,6 +1822,7 @@ class Log:
             'email': email,
             'useStatusChangeDate': useStatusChangeDate})
 
+    @staticmethod
     def LoadNotifications(statuses, EEfrom=None, to=None, limit=0, offset=0, messageCategory={}, useStatusChangeDate=False, notificationType=ApiTypes.NotificationType.All):
         """
         Returns notification logs filtered by specified parameters.
@@ -1743,6 +1847,7 @@ class Log:
             'useStatusChangeDate': useStatusChangeDate,
             'notificationType': notificationType.value})
 
+    @staticmethod
     def RetryNow(msgID):
         """
         Retry sending of temporarily not delivered message.
@@ -1752,6 +1857,7 @@ class Log:
         return ApiClient.Request('GET', '/log/retrynow', {
             'msgID': msgID})
 
+    @staticmethod
     def Summary(EEfrom, to, channelName=None, interval=ApiTypes.IntervalType.Summary, transactionID=None):
         """
         Loads summary information about activity in chosen date range.
@@ -1778,6 +1884,7 @@ Manages your segments - dynamically created lists of contacts
 
 class Segment:
 
+    @staticmethod
     def Add(segmentName, rule):
         """
         Create new segment, based on specified RULE.
@@ -1790,6 +1897,7 @@ class Segment:
             'segmentName': segmentName,
             'rule': rule})
 
+    @staticmethod
     def Copy(sourceSegmentName, newSegmentName=None, rule=None):
         """
         Copy your existing Segment with the optional new rule and custom name
@@ -1804,6 +1912,7 @@ class Segment:
             'newSegmentName': newSegmentName,
             'rule': rule})
 
+    @staticmethod
     def Delete(segmentName):
         """
         Delete existing segment.
@@ -1813,6 +1922,7 @@ class Segment:
         return ApiClient.Request('GET', '/segment/delete', {
             'segmentName': segmentName})
 
+    @staticmethod
     def Export(segmentName, fileFormat=ApiTypes.ExportFileFormats.Csv, compressionFormat=ApiTypes.CompressionFormat.EENone, fileName=None):
         """
         Exports all the contacts from the provided segment
@@ -1829,6 +1939,7 @@ class Segment:
             'compressionFormat': compressionFormat.value,
             'fileName': fileName})
 
+    @staticmethod
     def List(includeHistory=False, EEfrom=None, to=None):
         """
         Lists all your available Segments
@@ -1843,6 +1954,7 @@ class Segment:
             'from': EEfrom,
             'to': to})
 
+    @staticmethod
     def LoadByName(segmentNames, includeHistory=False, EEfrom=None, to=None):
         """
         Lists your available Segments using the provided names
@@ -1859,6 +1971,7 @@ class Segment:
             'from': EEfrom,
             'to': to})
 
+    @staticmethod
     def Update(segmentName, newSegmentName=None, rule=None):
         """
         Rename or change RULE for your segment
@@ -1881,6 +1994,7 @@ Managing texting to your clients.
 
 class SMS:
 
+    @staticmethod
     def Send(to, body):
         """
         Send a short SMS Message (maximum of 1600 characters) to any mobile phone.
@@ -1900,6 +2014,7 @@ Methods to organize and get results of your surveys
 
 class Survey:
 
+    @staticmethod
     def Add(survey):
         """
         Adds a new survey
@@ -1910,6 +2025,7 @@ class Survey:
         return ApiClient.Request('GET', '/survey/add', {
             'survey': survey})
 
+    @staticmethod
     def Delete(publicSurveyID):
         """
         Deletes the survey
@@ -1919,6 +2035,7 @@ class Survey:
         return ApiClient.Request('GET', '/survey/delete', {
             'publicSurveyID': publicSurveyID})
 
+    @staticmethod
     def Export(publicSurveyID, fileName, fileFormat=ApiTypes.ExportFileFormats.Csv, compressionFormat=ApiTypes.CompressionFormat.EENone):
         """
         Export given survey's data to provided format
@@ -1935,6 +2052,7 @@ class Survey:
             'fileFormat': fileFormat.value,
             'compressionFormat': compressionFormat.value})
 
+    @staticmethod
     def List():
         """
         Shows all your existing surveys
@@ -1943,6 +2061,7 @@ class Survey:
         """
         return ApiClient.Request('GET', '/survey/list')
 
+    @staticmethod
     def LoadResponseList(publicSurveyID):
         """
         Get list of personal answers for the specific survey
@@ -1953,6 +2072,7 @@ class Survey:
         return ApiClient.Request('GET', '/survey/loadresponselist', {
             'publicSurveyID': publicSurveyID})
 
+    @staticmethod
     def LoadResults(publicSurveyID):
         """
         Get general results of the specific survey
@@ -1963,6 +2083,7 @@ class Survey:
         return ApiClient.Request('GET', '/survey/loadresults', {
             'publicSurveyID': publicSurveyID})
 
+    @staticmethod
     def Update(survey):
         """
         Update the survey information
@@ -1981,6 +2102,7 @@ Managing and editing templates of your emails
 
 class Template:
 
+    @staticmethod
     def Add(templateName, subject, fromEmail, fromName, templateType=ApiTypes.TemplateType.RawHTML, templateScope=ApiTypes.TemplateScope.Private, bodyHtml=None, bodyText=None, css=None, originalTemplateID=0):
         """
         Create new Template. Needs to be sent using POST method
@@ -2009,6 +2131,7 @@ class Template:
             'css': css,
             'originalTemplateID': originalTemplateID})
 
+    @staticmethod
     def CheckUsage(templateID):
         """
         Check if template is used by campaign.
@@ -2019,6 +2142,7 @@ class Template:
         return ApiClient.Request('GET', '/template/checkusage', {
             'templateID': templateID})
 
+    @staticmethod
     def Copy(templateID, templateName, subject, fromEmail, fromName):
         """
         Copy Selected Template
@@ -2037,6 +2161,7 @@ class Template:
             'fromEmail': fromEmail,
             'fromName': fromName})
 
+    @staticmethod
     def Delete(templateID):
         """
         Delete template with the specified ID
@@ -2046,6 +2171,7 @@ class Template:
         return ApiClient.Request('GET', '/template/delete', {
             'templateID': templateID})
 
+    @staticmethod
     def GetEmbeddedHtml(templateID):
         """
         Search for references to images and replaces them with base64 code.
@@ -2056,6 +2182,7 @@ class Template:
         return ApiClient.Request('GET', '/template/getembeddedhtml', {
             'templateID': templateID})
 
+    @staticmethod
     def GetList(limit=500, offset=0):
         """
         Lists your templates
@@ -2068,6 +2195,7 @@ class Template:
             'limit': limit,
             'offset': offset})
 
+    @staticmethod
     def LoadTemplate(templateID, ispublic=False):
         """
         Load template with content
@@ -2080,6 +2208,7 @@ class Template:
             'templateID': templateID,
             'ispublic': ispublic})
 
+    @staticmethod
     def RemoveScreenshot(templateID):
         """
         Removes previously generated screenshot of template
@@ -2089,6 +2218,7 @@ class Template:
         return ApiClient.Request('GET', '/template/removescreenshot', {
             'templateID': templateID})
 
+    @staticmethod
     def SaveScreenshot(base64Image, templateID):
         """
         Saves screenshot of chosen Template
@@ -2101,6 +2231,7 @@ class Template:
             'base64Image': base64Image,
             'templateID': templateID})
 
+    @staticmethod
     def Update(templateID, templateScope=ApiTypes.TemplateScope.Private, templateName=None, subject=None, fromEmail=None, fromName=None, bodyHtml=None, bodyText=None, css=None, removeScreenshot=True):
         """
         Update existing template, overwriting existing data. Needs to be sent using POST method.
