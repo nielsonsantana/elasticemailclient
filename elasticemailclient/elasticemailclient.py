@@ -401,7 +401,13 @@ class Account:
             'notes': notes})
 
     @staticmethod
-    def UpdateAdvancedOptions(enableClickTracking=None, enableLinkClickTracking=None, manageSubscriptions=None, manageSubscribedOnly=None, transactionalOnUnsubscribe=None, skipListUnsubscribe=None, autoTextFromHtml=None, allowCustomHeaders=None, bccEmail=None, contentTransferEncoding=None, emailNotificationForError=None, emailNotificationEmail=None, webNotificationUrl=None, webNotificationNotifyOncePerEmail=None, webNotificationForSent=None, webNotificationForOpened=None, webNotificationForClicked=None, webNotificationForUnsubscribed=None, webNotificationForAbuseReport=None, webNotificationForError=None, hubCallBackUrl="", inboundDomain=None, inboundContactsOnly=None, lowCreditNotification=None, enableUITooltips=None, enableContactFeatures=None, notificationsEmails=None, unsubscribeNotificationsEmails=None, logoUrl=None, enableTemplateScripting=True, staleContactScore=None, staleContactInactiveDays=None, deliveryReason=None, tutorialsEnabled=None):
+    def UpdateAdvancedOptions(enableClickTracking=None, enableLinkClickTracking=None, manageSubscriptions=None,
+                              manageSubscribedOnly=None, transactionalOnUnsubscribe=None, skipListUnsubscribe=None,
+                              autoTextFromHtml=None, allowCustomHeaders=None, bccEmail=None, contentTransferEncoding=None,
+                              emailNotificationForError=None, emailNotificationEmail=None, webNotificationUrl=None,
+                              webNotificationNotifyOncePerEmail=None, webNotificationForSent=None,
+                              webNotificationForOpened=None, webNotificationForClicked=None, webNotificationForUnsubscribed=None,
+                              webNotificationForAbuseReport=None, webNotificationForError=None, hubCallBackUrl="", inboundDomain=None, inboundContactsOnly=None, lowCreditNotification=None, enableUITooltips=None, enableContactFeatures=None, notificationsEmails=None, unsubscribeNotificationsEmails=None, logoUrl=None, enableTemplateScripting=True, staleContactScore=None, staleContactInactiveDays=None, deliveryReason=None, tutorialsEnabled=None):
         """
         Update sending and tracking options of your account.
             string apikey - ApiKey that gives you access to our SMTP and HTTP API's.
