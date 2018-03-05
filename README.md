@@ -19,4 +19,4 @@ Elasticmal client from [Elasticmail library](http://api.elasticemail.com/public/
 
 ## License
 
-Ruby on Rails is released under the [MIT License](https://opensource.org/licenses/MIT).
+[MIT License](https://opensource.org/licenses/MIT).
